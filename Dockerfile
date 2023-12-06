@@ -30,4 +30,4 @@ RUN apk add --update --upgrade python unzip bash gcc g++ scons && \
 
 WORKDIR /go/src
 
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD [ "tail", "-f", "/dev/null" ]
