@@ -11,8 +11,10 @@ import (
 
 func TestValideJobIDIsNotUUID(t *testing.T) {
 	video := createValidVideo()
-	Job, err := domain.NewJob("path", "converted", video)
+	Job, _ := domain.NewJob("path", "converted", video)
 	Job.ID = "abc"
+
+	err := Job.Validate()
 
 	require.NotEmpty(t, Job)
 	require.Error(t, err)
