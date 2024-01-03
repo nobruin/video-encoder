@@ -25,14 +25,14 @@ func NewDb() *Database {
 func NewDbTest() *gorm.DB {
 	db := NewDb()
 	db.Env = "test"
-	db.DbType = "sqlilte3"
+	db.DbType = "sqlite3"
 	db.AutoMigrateDb = true
 	db.DebugMode = true
-	db.Dsn = "memory"
+	db.Dsn = ":memory:"
 	connection, err := db.Connect()
 
 	if err != nil {
-		log.Fatal("Db Test error:  %w", err)
+		log.Fatal("Db Test error:  %", err)
 	}
 
 	return connection
