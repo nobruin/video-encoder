@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestValideVideoRepository(t *testing.T) {
+func TestInsertVideoRepository(t *testing.T) {
 	db := database.NewDbTest()
 	defer db.Close()
 

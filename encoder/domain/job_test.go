@@ -2,37 +2,27 @@ package domain_test
 
 import (
 	"encoder/domain"
+	testhelper "encoder/domain/test_helper"
 	"testing"
-	"time"
 
-	uuid "github.com/satori/go.uuid"
 	"github.com/stretchr/testify/require"
 )
 
 func TestValideJobIDIsNotUUID(t *testing.T) {
-	video := createValidVideo()
-	Job, _ := domain.NewJob("path", "converted", video)
-	Job.ID = "abc"
+	video := testhelper.CreateValidVideo()
+	job, _ := domain.NewJob("path", "converted", video)
+	job.ID = "abc"
 
-	err := Job.Validate()
+	err := job.Validate()
 
-	require.NotEmpty(t, Job)
+	require.NotEmpty(t, job)
 	require.Error(t, err)
 }
 
 func TestValideJobIsValid(t *testing.T) {
-	video := createValidVideo()
-	Job, err := domain.NewJob("path", "converted", video)
+	video := testhelper.CreateValidVideo()
+	job, err := domain.NewJob("path", "converted", video)
 
-	require.NotEmpty(t, Job)
+	require.NotEmpty(t, job)
 	require.Nil(t, err)
-}
-
-func createValidVideo() *domain.Video {
-	video := domain.NewVideo()
-	video.ID = uuid.NewV4().String()
-	video.FilePath = "/path"
-	video.CreatedAT = time.Now()
-
-	return video
 }
