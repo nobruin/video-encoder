@@ -5,6 +5,8 @@ ENV PATH="$PATH:/bin/bash" \
     
 # FFMPEG
 RUN apk add --update ffmpeg bash make
+RUN adduser -D -g '' appuser
+
 
 # Install Bento
 WORKDIR /tmp/bento4
@@ -29,5 +31,7 @@ RUN apk add --update --upgrade python unzip bash gcc g++ scons && \
     cp -a ${BENTO4_PATH}/Source/Python/wrappers/. ${BENTO4_PATH}/bin
 
 WORKDIR /go/src
+
+USER appuser
 
 CMD [ "tail", "-f", "/dev/null" ]
