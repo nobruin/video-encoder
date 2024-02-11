@@ -1,0 +1,6 @@
+#ides
+.idea
+.vscode
+
+
+./encoder/bucket-credentials.json
